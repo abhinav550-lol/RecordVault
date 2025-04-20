@@ -7,6 +7,7 @@ import session from 'express-session'
 import bodyParser from 'body-parser';
 import errorMiddleware from './error/errorMiddleware.js'
 import fileUpload from 'express-fileupload'
+import cors from 'cors'
 
 app.use(fileUpload());
 app.use(bodyParser.json());
@@ -17,6 +18,12 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }))
+
+app.use(cors({
+	origin: ['http://localhost:3000', 'http://localhost:5173'], 
+	methods: ['GET', 'POST', 'PUT', 'DELETE'],
+	credentials: true, 
+  }));
 
 
 //Routes

@@ -109,6 +109,14 @@ userController.logoutUser = wrapAsyncErrors(async (req, res, next) => {
 	message: 'User logged out successfully' });
 });
 
+userController.checkAuth = wrapAsyncErrors(async (req, res, next) => {
+  if (req.session.userId) {
+    return res.status(200).json({ isLoggedIn: true, message: 'User is authenticated' });
+  } else {
+    return res.status(200).json({ isLoggedIn: false, message: 'User is not authenticated' });
+  }
+});
+
 
 userController.getUser = wrapAsyncErrors(async (req, res, next) => {
   const user = await User.findByPk(req.session.userId);

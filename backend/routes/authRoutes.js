@@ -11,4 +11,7 @@ router.post("/login", userController.loginUser);
 //Logout a user
 router.post("/logout", userController.logoutUser);
 
+//Check auth status
+router.get("/status", userController.checkAuth);
+
 export default router;
